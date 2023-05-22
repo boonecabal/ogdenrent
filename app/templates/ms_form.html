@@ -1,0 +1,242 @@
+{% from "_formhelpers.html" import render_field %}
+<form id="stepped" action="#" method="post">
+	{{ form.csrf_token }}
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12">
+				<h1 class="text-center py-3">Multi step form with vanilla JS in Bootstrap 4</h1>
+			</div>
+			<div class="col-md-10">
+				<div class="indicators d-flex justify-content-around py-4 text-light">
+					<div class="rounded-circle bg-secondary px-2 shadow-sm mr-2">1</div>
+					<div class="rounded-circle bg-secondary px-2 shadow-sm mr-2">2</div>
+					<div class="rounded-circle bg-secondary px-2 shadow-sm mr-2">3</div>
+					<div class="rounded-circle bg-secondary px-2 shadow-sm">4</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="fix-height position-relative">
+					<div class="steps">
+						<h3 class="py-3">Basic Information</h3>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.first_name) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.last_name) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.dob) }}
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.phone) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.ssn) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.email) }}
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.driver_license) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.state_id) }}
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.num_adults) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.num_kids) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.num_pets) }}
+							</div>
+						</div>
+						<!-- /.row -->
+					</div>
+					<div class="steps">
+						<h3 class="py-3">Previous Address</h3>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.prev_addr_street1) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.prev_addr_street2) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.prev_addr_city) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.prev_addr_state) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.prev_addr_zip) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.contact_to_verify_last_addr) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.contact_to_verify_last_phone) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.current_employer) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.position) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.emp_contact_name) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.emp_contact_phone) }}
+							</div>
+						</div> <!-- /.row -->
+					</div>
+					<div class="steps">
+						<h3 class="py-3">Criminal Background</h3>
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.is_felon) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.is_on_registry) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.po_name) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.po_phone) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.time_on_job) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.monthly_net_income) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.paydays) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.receiving_ssi) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.monthly_ssi_amount) }}
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.best_hours) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.between_x_AM) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.between_y_PM) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.auto_make) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.auto_model) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.auto_color) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.auto_plate) }}
+							</div>
+						</div> <!-- /.row -->
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.emergency_contact_name) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.emergency_contact_phone) }}
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.rented_here_before) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.rented_here_at_addr) }}
+							</div>
+						</div>
+
+					</div>
+
+					<div class="steps">
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.has_service_animal) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.former_military) }}
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.is_felon) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.is_on_registry) }}
+							</div>
+						</div>
+
+						<div class="row justify-content-center">
+							<div class="col pe-md-4">
+								{{ render_field(form.po_name) }}
+							</div>
+							<div class="col pe-md-4">
+								{{ render_field(form.po_phone) }}
+							</div>
+							<div class="col">
+								{{ render_field(form.offender_number) }}
+							</div>
+						</div> <!-- /.row -->
+					</div>
+				</div>
+				<div class="col-md-8 text-right">
+					<button type="button" class="btnPrev btn btn-outline-success">Prev</button>
+					<button type="button" class="btnNext btn btn-outline-success">Next</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

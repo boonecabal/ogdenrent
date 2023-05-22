@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar-Centered-Links-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block app_content %}
+<section class="container-fluid index-hero">
+    <div class="row g-0 index-hero-row">
+        <div class="col align-self-center">
+            <h1 class="display-3">Lease Application</h1>
+            <a class="btn btn-primary btn-lg d-none d-sm-none d-md-none d-lg-inline-flex d-xl-inline-flex d-xxl-inline-flex index-hero-btn" role="button" href="/new_application">Sign up</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

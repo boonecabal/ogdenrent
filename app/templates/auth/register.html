@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block head %}
+	{{ super() }}
+	<link
+		rel="stylesheet"
+		href="{{ url_for('static', filename='css/Navbar-Centered-Links-icons.css') }}" />
+	<link
+		rel="stylesheet"
+		href="{{ url_for('static', filename='css/styles.css') }}" />
+{% endblock %}
+
+{% block app_content %}
+<section class="container">
+	<div class="row justify-content-center pt-5 pb-3">
+
+		<div class="col-md-3 bg-light">
+			<h2>Login</h2>
+
+			{% from "_formhelpers.html" import render_field %}
+			<form method='POST' action='{{ url_for('auth.register') }}'>
+			{{ form.csrf_token }}
+				<dl>
+					{{ render_field(form.email) }}
+					{{ render_field(form.username) }}
+					{{ render_field(form.password) }}
+					{{ render_field(form.password2) }}
+				</dl>
+				<p><input type=submit value=Register></p>
+			</form>
+
+			<p class="pt5">
+				<strong>{{ message }}</strong>
+			</p>
+		</div>
+		<!-- col -->
+	</div>
+	<!-- row -->
+
+</section>
+{% endblock %}

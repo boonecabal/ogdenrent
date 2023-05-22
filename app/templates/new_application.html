@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar-Centered-Links-icons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/new_application.css') }}">
+{% endblock %}
+
+{% block app_content %}
+<div class="container align-items-start">
+   <form method="POST">
+      <div class="row mt-5 my-2 align-items-start">
+         <div class="col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 bg-info mx-0 px-0 col-6">
+            <div class="p-3">
+               {{ form.hidden_tag() }}
+               {{ form.first_name.label }} {{ form.first_name(class="form-control mx-0 px-0") }}
+               {{ form.last_name.label }} {{ form.last_name(class="form-control mx-0 px-0") }}
+               {{ form.dob.label }} {{ form.dob(class="form-control mx-0 px-0") }}
+               {{ form.phone.label }} {{ form.phone(class="form-control mx-0 px-0") }}
+               {{ form.ssn.label }} {{ form.ssn(class="form-control mx-0 px-0") }}
+               {{ form.email.label }} {{ form.email(class="form-control mx-0 px-0") }}
+            </div>
+         </div> <!-- col -->
+
+         <div class="bg-secondary mx-0 px-0 col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12">
+            <div class="p-3">
+               {{ form.hidden_tag() }}
+               {{ form.prev_addr_street1.label }} {{ form.prev_addr_street1(class="form-control mx-0 px-0") }}
+               {{ form.prev_addr_street2.label }} {{ form.prev_addr_street2(class="form-control mx-0 px-0") }}
+               {{ form.prev_addr_city.label }} {{ form.prev_addr_city(class="form-control mx-0 px-0") }}
+               {{ form.prev_addr_state.label }} {{ form.prev_addr_state(class="form-control mx-0 px-0") }}
+               {{ form.prev_addr_zip.label }} {{ form.prev_addr_zip(class="form-control mx-0 px-0") }}
+
+               <div class="form-check mt-2">
+                  <input id="formCheck-1" class="form-check-input" type="checkbox" name="clear" value="clear_value" checked />
+                  <label class="form-check-label" for="formCheck-1">
+                     Clear
+                  </label>
+               </div>
+
+               {{ form.submit(class="btn btn-primary d-inline-flex float-end mb-3") }}
+            </div>
+         </div> <!-- col -->
+
+      </div> <!-- row -->
+
+   </form>
+
+</div> <!-- container -->
+{% endblock %}
+
+{% block scripts %}
+   {{ super() }}
+
+   <!-- Optional JavaScript -->
+{% endblock %}

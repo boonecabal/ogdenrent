@@ -1,0 +1,115 @@
+.main-menu {
+  background: var(--bs-border-color);
+  padding: 0;
+}
+
+.dash-content {
+  padding-right: 0;
+  padding-left: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background: white;
+}
+
+.dash-footer {
+  background: var(--bs-border-color);
+  height: 78px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  box-sizing:unset;
+}
+
+.dash-footer-row {
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.dash-centered {
+  text-align: center;
+}
+
+.dash-vertical-ws {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.index-footer-col, .dash-footer-col {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.bg-color-footer {
+  border-color: rgba(0,0,0,0.9);
+}
+
+.index-hero {
+  height: 85vh;
+  background: radial-gradient(rgba(5,11,58,0.39), rgba(2,15,25,0.89) 99%), url("../img/hero2.jpg") center / cover no-repeat, var(--bs-orange);
+  color: var(--bs-white);
+  text-shadow: 0px 0px, 0px 0px;
+  margin: 0px;
+}
+
+.index-hero-row {
+  text-align: center;
+  height: 100%;
+}
+
+.index-hero-btn {
+  box-shadow: 0px 0px;
+  border-radius: 20px;
+}
+
+.index-hero-btn-small {
+  box-shadow: 0px 0px;
+  border-radius: 20px;
+}
+
+.index-footer {
+  background: var(--bs-border-color);
+  height: 78px;
+}
+
+.index-footer-row {
+  width: 100%;
+}
+
+
+.newapp-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.newapp-navbar {
+  background: var(--bs-border-color);
+  border-color: #d1d5de;
+  padding: 0;
+  box-shadow: 0px 0px, 2px 4px #00000015;
+}
+
+.newapp-content-submit-btn {
+  position: relative;
+}
+
+.newapp-footer {
+  background: var(--bs-border-color);
+  height: 78px;
+}
+
+.newapp-footer-row {
+  width: 100%;
+}
+
+.newapp-footer-col {
+  width: 100%;
+}
+
+*, ::after, ::before {
+  box-sizing: unset;
+}
