@@ -15,9 +15,10 @@
 {% endblock %}
 
 {% block app_content %}
-<section class="container dash-content">
+<section class="container bg-white px-3 my-3">
 	<div class="row">
-	<h2 class="display-6 mt-2">Dashboard</h2>
+		<h2 class="display-6 pt-3 my-3">Dashboard</h2>
+
 		<div class="col py-3">
 			<div>
 				<ul class="nav nav-tabs" role="tablist">
@@ -29,7 +30,7 @@
 					<!-- Tab 1 -->
 					<div class="tab-pane active" role="tabpanel" id="tab-1">
 
-						<div class="dash-customer-listing">
+						<div>
 							<div class="table-responsive">
 								<table class="table">
 									<thead>
@@ -53,8 +54,9 @@
 												<button id="{{ "btn-camera-%d" % c.id }}" type="button" class="btn btn-primary btn-sm camera_button">Camera</button>
 												<button id="{{ "btn-lease-report-%d" % c.id }}" type="button" class="btn btn-primary btn-sm lease_report_button">Lease</button>
 											</td>
+										</tr>
 										{% endfor %}
-										
+									</tbody>
 								</table>
 							</div>
 						</div>
@@ -64,7 +66,7 @@
 					<!-- Tab 2 -->
 					<div class="tab-pane" role="tabpanel" id="tab-2">
 
-						{% include './ms_form.html' %}
+						<h2 class="p-5">[New Customer]</h2>
 
 					</div> <!-- Tab 2 -->
 
@@ -79,5 +81,3 @@
 
 	<!-- Optional JavaScript -->
 {% endblock %}
-
-

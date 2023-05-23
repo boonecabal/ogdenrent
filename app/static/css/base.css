@@ -1,25 +1,110 @@
-body {
-  /* Margin bottom by footer height */
-	padding-bottom: 86px;
-
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+* {
 	margin: 0;
+	padding: 0;
+	font-family: Helvetica, sans-serif;
 }
 
-.main-menu {
-  background: var(--bs-border-color);
-  padding: 0;
+main {
+	background-color: #1A1A1A;
 }
+
+footer {
+	background-color: #1A1A1A;
+}
+
+html, body {
+	height: 100%;
+	background-color: #e8e8e8;
+}
+
+.layout {
+	min-height: 100%;
+}
+
+/*
+
+Menu
+
+*/
+.menu-item {
+	border: 1px solid white;
+}
+.menu-item-left {
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+	border-top: 1px solid white;
+}
+
+
+/*
+
+Colors
+
+https://coolors.co/171738-2e1760-3423a6-7180b9-dff3e4
+
+*/
+
+.bg-gray1 {
+	background-color: #1A1A1A;
+}
+.bg-gray2 {
+	background-color: #313131;
+}
+.bg-gray3 {
+	background-color: #484848;
+}
+.bg-gray4 {
+	background-color: #5f5f5f;
+}
+.bg-gray5 {
+	background-color: #767676;
+}
+.bg-gray6 {
+	background-color: #8d8d8d;
+}
+.bg-gray7 {
+	background-color: #a3a3a3;
+}
+.bg-gray8 {
+	background-color: #bababa;
+}
+.bg-gray9 {
+	background-color: #d1d1d1;
+}
+.bg-gray10 {
+	background-color: #e8e8e8;
+}
+.bg-gray11 {
+	background-color: #ffffff;
+}
+
+
+.bg-blue5 {
+	background-color: #171738;
+}
+.bg-blue4 {
+	background-color: #2E1760;
+}
+.bg-blue3 {
+	background-color: #3423A6;
+}
+.bg-blue2 {
+	background-color: #7180B9;
+}
+.bg-blue1 {
+	background-color: #DFF3E4;
+}
+.bg-blue0 {
+	background-color: #B7BEDB;
+}
+
 
 .dash-footer {
-  position: absolute;
-	margin-top : auto;
-	
-	left: 0;
+  background: var(--bs-border-color);
+  height: 78px;
+  position: fixed;
+  left: 0;
   bottom: 0;
   width: 100%;
-  height: 80px;
-  background: var(--bs-border-color);
+  box-sizing:unset;
 }

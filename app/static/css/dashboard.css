@@ -1,6 +1,19 @@
+main {
+	/*
+	background-color: #e8e8e8;
+	*/
+	background-color: blue;
+	min-height: 80vh;
+	display: flex;
+}
+
 .delete_button {
 	text-decoration: none;
 }
 .camera_button {
 	text-decoration: none;
+}
+
+.dash-content {
+	background-color: #1A1A1A;
 }

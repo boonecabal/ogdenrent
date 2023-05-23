@@ -1,6 +1,11 @@
 [![Contact me on Codementor](https://www.codementor.io/m-badges/boonecabal/im-a-cm-b.svg)](https://www.codementor.io/@boonecabal?refer=badge)
 
-## Current Tasks
+# This Time
+
+* added fully responsive multi-step new_customer form to Home > Sign up
+* removed multi-step new_customer form from Dashboard > Customers > New
+* tweaked header and footer
+# Last Time
 
 * successfully tested /api/v1/delete_customer/<int:id>
 * successfully deleted a Customer using Delete button on dashboard
