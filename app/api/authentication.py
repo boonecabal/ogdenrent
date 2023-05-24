@@ -1,4 +1,4 @@
-from flask import g, jsonify
+from flask import g, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from ..models import User
 from . import api
@@ -34,6 +34,12 @@ def before_request():
     if not g.current_user.is_anonymous and \
             not g.current_user.confirmed:
         return forbidden('Unconfirmed account')
+
+@api.after_request
+def after_request(response):
+    response.headers['Access-Control-Allow-Origin'] = request.headers.get('Origin', '*')
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    return response
 
 
 @api.route('/tokens/', methods=['POST'])

@@ -1,5 +1,6 @@
-from datetime import datetime 
-from flask import render_template, session, redirect, url_for, flash, request
+from datetime import datetime
+from flask_login import current_user
+from flask import render_template, session, redirect, url_for, flash, request, jsonify
 from . import main 
 from .forms import NameForm, CustomerApplicationForm
 from .. import db 
@@ -22,7 +23,7 @@ def dashboard():
 
 @main.route('/new_application', methods=['GET', 'POST'])
 def new_application():
-   form = make_new_application_form()
+   form = make_new_application_form(False)
 
    if form.validate_on_submit():
 
@@ -32,7 +33,7 @@ def new_application():
          db.session.commit()
 
       # add new customer to database
-      c = Customer()
+      c = Customer(user=current_user)
       c.first_name = form.first_name.data
       c.last_name = form.last_name.data
       c.dob = form.dob.data
@@ -53,6 +54,7 @@ def new_application():
       c.prev_addr_state = form.prev_addr_state.data
       c.prev_addr_zip = form.prev_addr_zip.data
 
+      c.photo = url_for('static', filename='img/customers/blank-person.png')
 
       db.session.add(c)
       db.session.commit()
@@ -62,6 +64,24 @@ def new_application():
       # return redirect(url_for('main.index'))
 
    return render_template('new_application.html', form=form)
+
+@main.route('/delete_customer/<int:customer_id>', methods=['DELETE'])
+def delete_customer(customer_id):
+   c = Customer.query.filter(Customer.id == customer_id).first()
+   db.session.delete(c)
+   db.session.commit()
+   flash('Customer deleted, fiend.  Now leave, please.')
+   return redirect(url_for('main.dashboard'))
+
+@main.route('/active_customer/<int:customer_id>', methods=['PUT'])
+def get_active_customer(customer_id):
+   c = Customer.query.get_or_404(customer_id)
+   if c is not None:
+      current_user.active_customer_id = c.id
+      db.session.add(current_user)
+      db.session.commit()
+
+   return jsonify({'active_customer_id': c.id})
 
 @main.route('/customer/<int:customer_id>', methods=['GET', 'POST'])
 def edit_customer(customer_id):
@@ -118,8 +138,11 @@ def save_changes(c, form, new=False):
     db.session.commit()
 
 
-def make_new_application_form():
+def make_new_application_form(load_fields=True):
    form = CustomerApplicationForm()
+   if not load_fields:
+      return form
+   
    form.first_name.data = 'Ted'
    form.last_name.data = 'Bell'
    form.dob.data = datetime.utcnow()

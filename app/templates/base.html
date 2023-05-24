@@ -61,14 +61,14 @@
 
 			<!-- Your page content -->
 			{% block content %}
-				<main>
-					{% for message in get_flashed_messages() %}
-					<div class="alert alert-warning">
-						<button type="button" class="close" data-dismiss="alert">&times;</button>
-						{{ message }}
-					</div>
-					{% endfor %}
+				{% for message in get_flashed_messages() %}
+				<div class="alert alert-warning">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					{{ message }}
+				</div>
+				{% endfor %}
 
+				<main>
 					{% block app_content %}{% endblock %}
 
 				</main>	

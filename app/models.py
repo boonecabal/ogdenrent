@@ -38,6 +38,8 @@ class	User(UserMixin,	db.Model):
 	password_hash	=	db.Column(db.String(128))	
 	role_id	=	db.Column(db.Integer,	db.ForeignKey('roles.id'))
 
+	customers = db.relationship('Customer', backref='user', lazy='dynamic')
+
 	confirmed	=	db.Column(db.Boolean,	default=False)
 
 	active_customer_id = db.Column(db.Integer)
@@ -278,9 +280,14 @@ class	Customer(db.Model):
 	date_signed	=	db.Column(db.DateTime, default=datetime.utcnow)
 
 	photo = db.Column(db.String(64))
+ 
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 	def	__init__(self, **kwargs):
 		super(Customer,	self).__init__(**kwargs)
+
+	def	__repr__(self):	
+		return '<Customer	%r %r>' % (self.first_name, self.last_name)
 
 	def	to_json(self):
 		json_customer	=	{
@@ -333,4 +340,3 @@ class	Customer(db.Model):
 			'date_signed': self.date_signed
 		}
 		return json_customer
-

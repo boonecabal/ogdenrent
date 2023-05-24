@@ -3,6 +3,8 @@
 # This Time
 
 * new_application.html: added rest of form fields (saving to db)
+* dashboard.html: got /delete_customer/<customer_id> working
+* dashboard.html: got Customer.photo added to grid
 # Last Time
 
 * added fully responsive multi-step new_customer form to Home > Sign up

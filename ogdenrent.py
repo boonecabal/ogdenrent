@@ -69,7 +69,7 @@ def	deploy():
         email='boone.cabal@gmail.com', 
         username='grantaster', 
         password='grantaster',
-        role_id=admin_role.id,
+        role=admin_role,
         confirmed=True)
     admin.role_id = admin_role.id
 
@@ -77,7 +77,7 @@ def	deploy():
     db.session.commit()
 
     from datetime import datetime
-    ted = Customer()
+    ted = Customer(user=admin)
     ted.first_name = 'Ted'
     ted.last_name = 'Bell'
     ted.dob = datetime.now()

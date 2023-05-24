@@ -1,4 +1,4 @@
-from flask import jsonify, g, request, session
+from flask import jsonify, g, request, session, url_for
 from .. import db
 from . import api
 from ..models import Customer
@@ -54,15 +54,23 @@ def set_customer_picture():
         return jsonify({'error': 'No file uploaded'}), 400
 
     file = request.files['async-upload']
-    filename = os.path.basename(file.filename)
-    
+    #filename = os.path.basename(file.filename)
+
+    customer_id = g.current_user.active_customer_id
+
+    c = Customer.query.filter_by(id=customer_id).first()
+
+    filename = f'{c.first_name}_{c.last_name}_{c.id}-N.jpg'
+
     # Save the file to the uploads folder
-    file_path = os.path.join(os.path.abspath('app/uploads/'), filename)
-    
+    file_path = os.path.join(os.path.abspath('app/static/img/customers'), filename)
+
     with open(file_path, 'wb') as f:
         f.write(file.read())
 
-    customer_id = g.current_user.active_customer_id
+    c.photo = url_for('static', filename=f"img/customers/{filename}")
+    db.session.add(c)
+    db.session.commit()
 
     # Return a response with the file name and path
     return jsonify({

@@ -131,8 +131,10 @@ class APITestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
     
     def make_ted(self):
+
+        grantaster = User.query.filter_by(username='grantaster').first()
         
-        ted = Customer()
+        ted = Customer(user=grantaster)
         ted.first_name = 'Ted'
         ted.last_name = 'Bell'
         from datetime import datetime
