@@ -2,16 +2,12 @@
 
 {% block head %}
 	{{ super() }}
-
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/Navbar-Centered-Links-icons.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
 	<script type="text/javascript" src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/ms_form.css') }}">
-	<script type='text/javascript' src="{{ url_for('static', filename='js/ms_form.js') }}"></script>
 {% endblock %}
 
 {% block app_content %}
@@ -19,11 +15,13 @@
 	<div class="row">
 		<h2 class="display-6 pt-3 my-3">Dashboard</h2>
 
-		<div class="col py-3">
-			<div>
+		<div class="col-12 py-3">
+			<div id="dash-tab">
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">Customers</a></li>
 					<li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">New</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Properties</a></li>
+					<li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-4">+</a></li>
 				</ul>
 				<div class="tab-content">
 
@@ -72,9 +70,21 @@
 
 					</div> <!-- Tab 2 -->
 
+					<!-- Tab 3 -->
+					<div class="tab-pane py-4" role="tabpanel" id="tab-3">
+
+						{% include 'properties.html' %}
+
+					</div> <!-- Tab 3 -->
+
+					<!-- Tab 4 -->
+					<div class="tab-pane py-4" role="tabpanel" id="tab-4">
+
+					</div> <!-- Tab 4 -->
 			</div>
 		</div>
 	</div>
+
 </section>
 {% endblock %}
 

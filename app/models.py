@@ -39,6 +39,7 @@ class	User(UserMixin,	db.Model):
 	role_id	=	db.Column(db.Integer,	db.ForeignKey('roles.id'))
 
 	customers = db.relationship('Customer', backref='user', lazy='dynamic')
+	properties = db.relationship('Property', backref='user', lazy='dynamic')
 
 	confirmed	=	db.Column(db.Boolean,	default=False)
 
@@ -245,14 +246,14 @@ class	Customer(db.Model):
 	position = db.Column(db.String(64))
 	emp_contact_name = db.Column(db.String(64))
 	emp_contact_phone	=	db.Column(db.String(64))
-	
+
 	time_on_job	=	db.Column(db.Integer)
 	monthly_net_income = db.Column(db.Float)
 	paydays	=	db.Column(db.Integer)
 
 	receiving_ssi	=	db.Column(db.Boolean)
 	monthly_ssi_amount = db.Column(db.Float)
-	
+
 	best_hours = db.Column(db.String(64))
 	between_x_AM = db.Column(db.Integer)
 	between_y_PM = db.Column(db.Integer)
@@ -264,7 +265,7 @@ class	Customer(db.Model):
 	po_name	=	db.Column(db.String(64))
 	po_phone = db.Column(db.String(64))
 	offender_number	=	db.Column(db.String(64))
-	
+
 	auto_make	=	db.Column(db.String(64))
 	auto_model = db.Column(db.String(64))
 	auto_color = db.Column(db.String(64))
@@ -272,7 +273,7 @@ class	Customer(db.Model):
 
 	emergency_contact_name = db.Column(db.String(64))
 	emergency_contact_phone	=	db.Column(db.String(64))
-	
+
 	rented_here_before = db.Column(db.Boolean)
 	rented_here_at_addr	=	db.Column(db.String(64))
 
@@ -280,8 +281,9 @@ class	Customer(db.Model):
 	date_signed	=	db.Column(db.DateTime, default=datetime.utcnow)
 
 	photo = db.Column(db.String(64))
- 
+
 	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+	property_id = db.Column(db.Integer, db.ForeignKey('properties.id'))
 
 	def	__init__(self, **kwargs):
 		super(Customer,	self).__init__(**kwargs)
@@ -340,3 +342,36 @@ class	Customer(db.Model):
 			'date_signed': self.date_signed
 		}
 		return json_customer
+
+class Property(db.Model):
+	__tablename__ = 'properties'
+	id = db.Column(db.Integer, primary_key=True)
+	street1 = db.Column(db.String(64))
+	street2 = db.Column(db.String(64))
+	city = db.Column(db.String(64))
+	state = db.Column(db.String(64))
+	zip_code = db.Column(db.String(64))
+
+	lat = db.Column(db.Float)
+	lon = db.Column(db.Float)
+
+	user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+	def	__init__(self, **kwargs):
+		super(Property,	self).__init__(**kwargs)
+
+	def	__repr__(self):	
+		return '<Property	%r %r %r>' % (self.street1, self.city, self.state)
+
+	def	to_json(self):
+		json_property	=	{
+			'street1':	self.street1,
+			'street2':	self.street2,
+			'city': self.city,
+			'state': self.state,
+			'zip_code': self.state,
+			'lat': self.lat,
+			'lon': self.lon
+		}
+
+		return json_property

@@ -14,7 +14,7 @@ if os.environ.get('FLASK_COVERAGE'):
 import sys
 import click
 from app import	create_app,	db 
-from app.models	import User, Role, Customer, Permission
+from app.models	import User, Role, Customer, Permission, Property
 from flask_migrate import	Migrate, upgrade
 
 app	=	create_app(os.getenv('FLASK_CONFIG') or	'default') 
@@ -90,6 +90,18 @@ def	deploy():
     ted.emergency_contact_phone = '555-555-5555'
     ted.contact_to_verify_last_addr = 'Rhomboid'
     ted.contact_to_verify_last_phone = '555-555-5555'
-    
+
     db.session.add(ted)
+    db.session.commit()
+
+    p = Property(user=admin)
+    p.street1 = '123 Main St'
+    p.street2 = 'APT 8'
+    p.city = 'New York'
+    p.state = 'NY'
+    p.zip_code = '12345'
+    p.lat = 41.260793
+    p.lon = -111.972148
+
+    db.session.add(p)
     db.session.commit()

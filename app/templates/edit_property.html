@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='Navbar-Centered-Links-icons.css') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/save_property.css') }}">
+{% endblock %}
+
+{% block app_content %}
+
+	{% from "_formhelpers.html" import render_property_control %}
+
+	{{ render_property_control(form, method, property_id) }}
+
+{% endblock %}
+
+{% block scripts %}
+   {{ super() }}
+
+   <!-- Optional JavaScript -->
+{% endblock %}

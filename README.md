@@ -1,10 +1,18 @@
 [![Contact me on Codementor](https://www.codementor.io/m-badges/boonecabal/im-a-cm-b.svg)](https://www.codementor.io/@boonecabal?refer=badge)
 
+# Next
+
+T - api.customers: /save_customer_photo_snapshot
+T - new_application.html: clean up form 
+T - send_email/confirmation 
+
 # This Time
 
-* new_application.html: added rest of form fields (saving to db)
-* dashboard.html: got /delete_customer/<customer_id> working
-* dashboard.html: got Customer.photo added to grid
+* Worked on _formhelpers.html, refactored a lot
+* Changed main.views a lot 
+* Properties: added all the Properties code
+* Dashboard > Properties: got CRUD for properties working
+
 # Last Time
 
 * added fully responsive multi-step new_customer form to Home > Sign up

@@ -1,6 +1,6 @@
-{% macro render_field(field, styles) %}
-    <dt>{{ field.label }}
-    <dd>{{ field(class='form-control',**kwargs)|safe }}
+{% macro render_field(field) %}
+    <dt>{{ field.label }}</dt>
+    <dd>{{ field(class='form-control',**kwargs)|safe }}</dd>
     {% if field.errors %}
         <ul class=errors>
         {% for error in field.errors %}
@@ -8,5 +8,82 @@
         {% endfor %}
         </ul>
     {% endif %}
-    </dd>
+{% endmacro %}
+
+{% macro render_property_control(properties_form, method, property_id) %}
+<div class="container bg-light py-5 my-3 mh-100 justify-content-center">
+    <div class="row h-100">
+        <div class="col-4 px-5">
+            <div class="text-black">
+                <h4>Template function centered, no marker</h4>
+            </div>
+        </div>  
+
+        <div class="col-8 px-5">
+
+            <form action="{{ url_for('main.edit_property', property_id=property_id) }}" method="POST">
+                {{ properties_form.csrf_token }}
+
+                <!-- Row 1-->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            {{ render_field(properties_form.street1) }}
+                        </div>
+
+                        <div class="form-group">
+                            {{ render_field(properties_form.street2) }}
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Row 2-->
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-group">
+                            {{ render_field(properties_form.city) }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            {{ render_field(properties_form.state) }}
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                            {{ render_field(properties_form.zip_code) }}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3-->
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            {{ render_field(properties_form.lat) }}
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            {{ render_field(properties_form.lon) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-block text-end py-1">
+                    <hr>
+                    {{ properties_form.submit(class="btn btn-primary") }}
+                    <a href="{{ url_for('main.dashboard') }}" class="btn u-btn-circle btn-secondary">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
 {% endmacro %}

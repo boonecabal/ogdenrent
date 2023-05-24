@@ -2,9 +2,9 @@ from datetime import datetime
 from flask_login import current_user
 from flask import render_template, session, redirect, url_for, flash, request, jsonify
 from . import main 
-from .forms import NameForm, CustomerApplicationForm
+from .forms import NameForm, CustomerApplicationForm, PropertyForm
 from .. import db 
-from ..models import User, Customer
+from ..models import User, Customer, Property
 
 @main.route('/', methods=['GET', 'POST']) 
 def index():
@@ -19,7 +19,16 @@ def index():
 def dashboard():
    customers = Customer.query.all()
    form = CustomerApplicationForm()
-   return render_template('dashboard.html', form=form, customers=customers)
+
+   properties = Property.query.all()
+   properties_form = PropertyForm()
+
+   return render_template(
+      'dashboard.html', 
+      form=form, 
+      properties_form=properties_form, 
+      customers=customers, 
+      properties=properties)
 
 @main.route('/new_application', methods=['GET', 'POST'])
 def new_application():
@@ -86,7 +95,7 @@ def get_active_customer(customer_id):
 @main.route('/customer/<int:customer_id>', methods=['GET', 'POST'])
 def edit_customer(customer_id):
    c = Customer.query.filter(Customer.id == customer_id).first()
-   
+
    if c:
       form = CustomerApplicationForm(formdata=request.form, obj=c)
 
@@ -109,7 +118,7 @@ def edit_customer(customer_id):
          form.prev_addr_zip = c.form.prev_addr_zip 
 
       elif request.method == 'POST' and form.validate():
-         save_changes(c, form)
+         save_customer(c, form)
          flash('Customer update, fiend.  Now leave, please.')
 
       return render_template('edit_customer.html', form=form)
@@ -117,7 +126,7 @@ def edit_customer(customer_id):
    else:
       return 'Error loading #{customer_id}'.format(customer_id=customer_id)
 
-def save_changes(c, form, new=False):
+def save_customer(c, form, new=False):
     """
     Save the changes to the database
     """
@@ -136,6 +145,79 @@ def save_changes(c, form, new=False):
 
     # commit the data to the database
     db.session.commit()
+
+@main.route('/properties', methods=['GET', 'POST'])
+def properties():
+   properties = Property.query.all()
+   form = PropertyForm()
+   return render_template('properties.html', form=form, properties=properties)
+
+@main.route('/property', methods=['GET', 'POST'])
+def add_property():
+   form = PropertyForm()
+   if form.validate_on_submit():
+      c = save_property(None, form)
+
+      # redirect back to Dashboard > Properties
+      flash('Thanks for submitting your property, fiend.  Now leave, please.')
+
+      return redirect('main.dashboard')
+
+   return render_template('new_property.html', form=form)
+
+@main.route('/property/view/<int:property_id>', methods=['GET'])
+def view_property(property_id):
+   p = Property.query.filter_by(id=property_id).first()
+   form = PropertyForm()
+   form.street1.data = p.street1
+   form.street2.data = p.street2
+   form.city.data = p.city
+   form.state.data = p.state
+   form.zip_code.data = p.zip_code
+   form.lat.data = p.lat
+   form.lon.data = p.lon
+   return render_template('view_property.html', form=form)
+
+@main.route('/property/edit/<int:property_id>', methods=['GET', 'POST'])
+def edit_property(property_id):
+   p = Property.query.filter_by(id=property_id).first()
+   form = PropertyForm()
+
+   if form.validate_on_submit():
+      save_property(p, form)
+      flash('Updated property, fiend.  Now leave, please.')
+
+      # redirect to Dashboard > Properties
+      return redirect(url_for('main.dashboard'))
+
+   else:
+      # fetch existing Property, load form with it
+      form.street1.data = p.street1
+      form.street2.data = p.street2
+      form.city.data = p.city
+      form.state.data = p.state
+      form.zip_code.data = p.zip_code
+      form.lat.data = p.lat
+      form.lon.data = p.lon
+
+      return render_template('edit_property.html', form=form, method='PUT', property_id=p.id)
+
+def save_property(p, form):
+   if p is None:
+      p = Property(form.street1.data, form.street2.data, form.city.data, form.state.data, form.zip_code.data, user=current_user)
+   else:
+      p.street1 = form.street1.data
+      p.street2 = form.street2.data
+      p.city = form.city.data
+      p.state = form.state.data
+      p.zip_code = form.zip_code.data
+      p.lon = form.lon.data
+      p.lat = form.lat.data
+
+   db.session.add(p)
+   db.session.commit()
+
+   return p
 
 
 def make_new_application_form(load_fields=True):

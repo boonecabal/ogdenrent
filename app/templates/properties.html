@@ -1,0 +1,34 @@
+						<div>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>* Edit *</th>
+											<th>Street #1</th>
+											<th>Street #2</th>
+											<th>City</th>
+											<th>State</th>
+											<th>Zip</th>
+											<th style="text-align: center;">Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for p in properties %}
+										<tr>
+											<td><a id='{{ "btn-edit-property_%d" % p.id }}' href="{{ url_for('main.edit_property', property_id=p.id) }}" class="edit_property_button btn btn-primary btn-sm edit_button">Edit</></td>
+											<td>{{ p.street1 }}</td>
+											<td>{{ p.street2 }}</td>
+											<td>{{ p.city }}</td>
+											<td>{{ p.state }}</td>
+											<td>{{ p.zip_code }}</td>
+											<td class="dash-centered">
+												<button id="{{ "btn-submit-%d" % p.id }}" type="button" class="btn btn-primary btn-sm delete_button">Delete</button>
+												<button id="{{ "btn-camera-%d" % p.id }}" type="button" class="btn btn-primary btn-sm camera_button">Camera</button>
+												<button id="{{ "btn-lease-report-%d" % p.id }}" type="button" class="btn btn-primary btn-sm lease_report_button">Lease</button>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>

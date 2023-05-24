@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm 
-from wtforms import StringField, SubmitField, DateField, SelectField, BooleanField, IntegerField
+from wtforms import StringField, SubmitField, DateField, SelectField, BooleanField, IntegerField, FloatField
 from wtforms.validators import DataRequired
 
 class NameForm(FlaskForm): 
@@ -67,5 +67,17 @@ class CustomerApplicationForm(FlaskForm):
    date_signed	= DateField('Date')
 
    photo = StringField('Photo')
+
+   submit = SubmitField('Submit')
+
+class PropertyForm(FlaskForm):
+   street1 = StringField('Street1', validators=[DataRequired()])
+   street2 = StringField('Street2')
+   city = StringField('City', validators=[DataRequired()])
+   state = StringField('State', validators=[DataRequired()])
+   zip_code = StringField('Zip', validators=[DataRequired()])
+
+   lat = FloatField("Latitude")
+   lon = FloatField("Longitude")
 
    submit = SubmitField('Submit')
