@@ -5,6 +5,10 @@ from ..models import Customer
 from ..exceptions import ValidationError
 import os
 
+@api.route('/new_customer', methods=['POST'])
+def new_customer():
+    customer_id = g.current_user.active_customer_id
+
 @api.route('/active_customer', methods=['GET'])
 def get_active_customer():
     customer_id = g.current_user.active_customer_id

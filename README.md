@@ -2,15 +2,9 @@
 
 # This Time
 
+* new_application.html: added rest of form fields (saving to db)
+# Last Time
+
 * added fully responsive multi-step new_customer form to Home > Sign up
 * removed multi-step new_customer form from Dashboard > Customers > New
 * tweaked header and footer
-# Last Time
-
-* successfully tested /api/v1/delete_customer/<int:id>
-* successfully deleted a Customer using Delete button on dashboard
-* added remaining fields to models and forms
-* added all fields to Dashboard > Customers > New
-* dashboard.js: got /api/v1/active_customer<int:id> working
-* got /customer_photo working
-* got Webcam and /customer_photo working

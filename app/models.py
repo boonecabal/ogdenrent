@@ -247,7 +247,7 @@ class	Customer(db.Model):
 	time_on_job	=	db.Column(db.Integer)
 	monthly_net_income = db.Column(db.Float)
 	paydays	=	db.Column(db.Integer)
-	
+
 	receiving_ssi	=	db.Column(db.Boolean)
 	monthly_ssi_amount = db.Column(db.Float)
 	
